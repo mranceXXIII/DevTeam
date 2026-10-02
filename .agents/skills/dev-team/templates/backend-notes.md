@@ -1,0 +1,26 @@
+# Template: BACKEND-NOTES.md (Backend Developer)
+
+> Implementation notes for the Leader and the next engineer. Shape defined in
+> `reference/documentation-contract.md` §3.
+
+```markdown
+# Backend Notes — <Project Name>
+- Run: <run slug> | Owner: backend | Version: 1 | Status: submitted
+- Inputs: docs/API-CONTRACT.md, docs/DATA-MODEL.md
+
+## 1. Notable files
+| Path | What it is / why it matters |
+| :-- | :--- |
+
+## 2. Tradeoffs made
+- <decision — what it buys / what it costs — why it was the right call>
+
+## 3. How to run
+- Install: `<exact command>`
+- Migrate: `<exact command>`
+- Dev server: `<exact command>` (URL: <url>)
+- Test: `<exact command>`
+
+## 4. Follow-ups
+- <known limitation / deferred work — and when it might matter>
+```
