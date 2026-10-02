@@ -1,0 +1,38 @@
+# --- OS / editor noise ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+
+# --- Per-run working output (keep the .gitkeep + README, ignore real runs) ---
+workspace/runs/*
+!workspace/runs/.gitkeep
+
+# --- Media binaries are large; keep the catalog + sequences as MD, ignore raw images ---
+workspace/**/media/*.png
+workspace/**/media/*.jpg
+workspace/**/media/*.webp
+!workspace/**/media/.gitkeep
+
+# --- Build / dependency noise from any project a run generates ---
+node_modules/
+dist/
+build/
+.next/
+out/
+coverage/
+*.log
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# --- Env / secrets (never commit) ---
+.env
+.env.*
+!.env.example
+
+# --- Local install artifacts ---
+scripts/.install-log.txt
