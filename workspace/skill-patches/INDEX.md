@@ -6,7 +6,7 @@
 
 | Date | Agent | Title | Origin | Recurrence | Target file | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| _none yet_ | — | — | — | — | — | — |
+| 2026-10-12 | frontend | Skeleton-first loading states (no spinner as primary loading UI) | user-request (mssql-ticket-dashboard run) | high | agents/frontend-developer.md | applied |
 
 ---
 
