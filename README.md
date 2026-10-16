@@ -117,10 +117,17 @@ The skill is auto-discoverable when placed in a skills directory the platform sc
 powershell -ExecutionPolicy Bypass -File .\scripts\install.ps1
 ```
 
-This links/copies `.agents/skills/dev-team` into `~/.agents/skills/dev-team`, after which
-it appears as the `dev-team` skill everywhere you work.
+This copies `.agents/skills/dev-team` into `~/.agents/skills/dev-team` **and** installs
+the Claude Code plugin into `~/.claude/commands/dev-team.md`, so the skill is available
+in every Claude Code session.
 
-**Using it:**
+**Using it in Claude Code:**
+
+```text
+/dev-team <your request>
+```
+
+**Using it in other platforms:**
 
 ```text
 /dev-team <your request>
@@ -128,6 +135,13 @@ it appears as the `dev-team` skill everywhere you work.
 
 or simply start a request and let the skill trigger on its description
 (architecture, build a system, plan a project, review existing codebase, etc.).
+
+### Claude Code Plugin
+
+The file [`.claude/commands/dev-team.md`](./.claude/commands/dev-team.md) is a
+project-scoped Claude Code slash command. It is active in this repo immediately without
+running the installer — type `/dev-team` in any Claude Code session opened in this
+directory to activate the Team Leader.
 
 ---
 

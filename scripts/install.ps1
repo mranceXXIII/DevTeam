@@ -37,10 +37,15 @@ $repoRoot    = Split-Path -Parent $PSScriptRoot
 $sourceSkill = Join-Path $repoRoot '.agents\skills\dev-team'
 $sourceRules = Join-Path $repoRoot '.agents\rules.md'
 
-$skillsHome  = Join-Path $env:USERPROFILE '.agents\skills'
-$targetSkill = Join-Path $skillsHome 'dev-team'
-$targetRules = Join-Path $env:USERPROFILE '.agents\devteam-rules.md'
-$logPath     = Join-Path $PSScriptRoot '.install-log.txt'
+$skillsHome      = Join-Path $env:USERPROFILE '.agents\skills'
+$targetSkill     = Join-Path $skillsHome 'dev-team'
+$targetRules     = Join-Path $env:USERPROFILE '.agents\devteam-rules.md'
+$logPath         = Join-Path $PSScriptRoot '.install-log.txt'
+
+# Claude Code plugin paths
+$sourcePlugin    = Join-Path $repoRoot '.claude\commands\dev-team.md'
+$claudeCommandsHome = Join-Path $env:USERPROFILE '.claude\commands'
+$targetPlugin    = Join-Path $claudeCommandsHome 'dev-team.md'
 
 function Write-Log {
     param([string]$Message)
@@ -59,10 +64,15 @@ if (-not (Test-Path -LiteralPath (Join-Path $sourceSkill 'SKILL.md'))) {
     throw "SKILL.md missing in $sourceSkill - the skill is incomplete."
 }
 
-# --- Ensure target home exists ----------------------------------------------
+# --- Ensure target homes exist ----------------------------------------------
 if (-not (Test-Path -LiteralPath $skillsHome)) {
     New-Item -ItemType Directory -Path $skillsHome -Force | Out-Null
     Write-Log "Created skills home: $skillsHome"
+}
+
+if (-not (Test-Path -LiteralPath $claudeCommandsHome)) {
+    New-Item -ItemType Directory -Path $claudeCommandsHome -Force | Out-Null
+    Write-Log "Created Claude commands home: $claudeCommandsHome"
 }
 
 # --- Handle existing installation -------------------------------------------
@@ -112,6 +122,14 @@ if (Test-Path -LiteralPath $sourceRules) {
     Write-Log "Copied rules to: $targetRules"
 }
 
+# --- Install Claude Code plugin ----------------------------------------------
+if (Test-Path -LiteralPath $sourcePlugin) {
+    Copy-Item -LiteralPath $sourcePlugin -Destination $targetPlugin -Force
+    Write-Log "Installed Claude Code plugin to: $targetPlugin"
+} else {
+    Write-Log "WARNING: Claude Code plugin not found at $sourcePlugin — skipping."
+}
+
 # --- Verify ------------------------------------------------------------------
 $checkFiles = @(
     'SKILL.md',
@@ -149,3 +167,6 @@ Write-Host ""
 Write-Host "DevTeam installed. Invoke with:" -ForegroundColor Green
 Write-Host "    /dev-team <your request>" -ForegroundColor Cyan
 Write-Host "  or just describe the system you want built." -ForegroundColor Green
+Write-Host ""
+Write-Host "Claude Code plugin installed at: $targetPlugin" -ForegroundColor Green
+Write-Host "  Type /dev-team in any Claude Code session to activate the team." -ForegroundColor Cyan
