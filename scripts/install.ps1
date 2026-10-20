@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Installs the DevTeam skill into the platform's global skills directory.
 
@@ -127,7 +127,7 @@ if (Test-Path -LiteralPath $sourcePlugin) {
     Copy-Item -LiteralPath $sourcePlugin -Destination $targetPlugin -Force
     Write-Log "Installed Claude Code plugin to: $targetPlugin"
 } else {
-    Write-Log "WARNING: Claude Code plugin not found at $sourcePlugin — skipping."
+    Write-Log "WARNING: Claude Code plugin not found at $sourcePlugin - skipping."
 }
 
 # --- Verify ------------------------------------------------------------------
