@@ -1,0 +1,16 @@
+﻿{
+  "name": "devteam",
+  "owner": { "name": "mranceXXIII", "url": "https://github.com/mranceXXIII" },
+  "metadata": { "description": "Plugins from the mranceXXIII DevTeam repository.", "version": "1.1.0" },
+  "plugins": [
+    {
+      "name": "dev-team",
+      "source": "./",
+      "description": "Orchestrate a full software engineering agent team (Team Leader, Planner, Frontend, Backend, QA, Penetration, Legal, Multimedia) driven by Markdown artifacts. Invoke with /dev-team.",
+      "category": "engineering",
+      "version": "1.1.0",
+      "author": { "name": "mranceXXIII" },
+      "keywords": ["orchestration", "engineering", "agents", "dev-team"]
+    }
+  ]
+}

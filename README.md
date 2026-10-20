@@ -136,12 +136,47 @@ in every Claude Code session.
 or simply start a request and let the skill trigger on its description
 (architecture, build a system, plan a project, review existing codebase, etc.).
 
-### Claude Code Plugin
+### Claude Code Plugin (recommended — works in any project)
 
-The file [`.claude/commands/dev-team.md`](./.claude/commands/dev-team.md) is a
-project-scoped Claude Code slash command. It is active in this repo immediately without
-running the installer — type `/dev-team` in any Claude Code session opened in this
-directory to activate the Team Leader.
+This repository is a **Claude Code plugin and marketplace**. Install it once and
+`/dev-team` (as `/dev-team:dev-team`) is available in **every project**, not just this repo:
+
+```text
+# Inside Claude Code:
+/plugin marketplace add mranceXXIII/DevTeam
+/plugin install dev-team@devteam
+
+# Or from a terminal:
+claude plugin marketplace add mranceXXIII/DevTeam
+claude plugin install dev-team@devteam
+```
+
+Then invoke it anywhere:
+
+```text
+/dev-team:dev-team Build a REST API for inventory management with auth
+```
+
+The plugin ships the command ([`commands/dev-team.md`](./commands/dev-team.md)) and the
+skill (`.agents/skills/dev-team/`), declared in [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json)
+and listed by [`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json).
+
+### Personal slash command (bare `/dev-team`)
+
+Prefer the bare `/dev-team` name without a namespace? The installer also drops a
+personal command into `~/.claude/commands/dev-team.md`, which is available in every
+session with no prefix:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\install.ps1
+```
+
+### Project-scoped command (this repository only)
+
+The file [`.claude/commands/dev-team.md`](./.claude/commands/dev-team.md) is a project-scoped
+Claude Code slash command. It is active in this repo immediately without running the
+installer — type `/dev-team` in any Claude Code session opened in this directory to
+activate the Team Leader.
 
 ---
 
@@ -150,6 +185,9 @@ directory to activate the Team Leader.
 | Path | What it is |
 | :--- | :--- |
 | `.agents/rules.md` | Non-negotiable orchestrator + agent rules |
+| `.claude-plugin/plugin.json` | Claude Code plugin manifest |
+| `.claude-plugin/marketplace.json` | Marketplace listing — enables one-command install |
+| `commands/dev-team.md` | Plugin slash command (`/dev-team:dev-team`) |
 | `.agents/skills/dev-team/SKILL.md` | Entry point; the Team Leader loop |
 | `.agents/skills/dev-team/agents/` | The 8 role definitions (personas, duties, integrity rules) |
 | `.agents/skills/dev-team/reference/` | Standards, workflow, gates, handoff, evolution, tool mapping |
